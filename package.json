@@ -1,6 +1,6 @@
 {
     "name": "@adobe/es-modules-middleware",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A Connect-style and Karma middleware for resolving ES-module imports and exports to node_modules",
     "engines": {
         "node": ">=8.10.0"
