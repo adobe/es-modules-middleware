@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>ES Modules Middleware Demo - Smile!</title>
+        <style>
+            #content {
+                margin: 0 auto;
+                width: 300px;
+                padding: 50px;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            my-smile {
+                font-size: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <h1>Smile!</h1>
+            <p>
+                You should see a smiley below, if you're using a modern browser
+                which supports
+                <a href="https://www.webcomponents.org/introduction">
+                    Web Components
+                </a>
+                natively and the es-module-middleware is working.
+            </p>
+            <p>
+                Its using the
+                <a href="https://lit-element.polymer-project.org/">
+                    LitElement project
+                </a>
+                to implement a simple web component.
+            </p>
+            <my-smile></my-smile>
+        </div>
+        <script src="./my-smile.js" type="module"></script>
+    </body>
+</html>
