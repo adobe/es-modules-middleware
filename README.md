@@ -1,4 +1,4 @@
-# es-module-middleware
+# es-modules-middleware
 
 This middleware provides a connect-style middleware and a Karma middleware factory for resolving ES-module import and export statements on the fly.
 
@@ -33,7 +33,7 @@ npm install --save-dev @adobe/es-modules-middleware
 The module can be included and used as a connect middleware by providing it the root path where module resolution should start from.
 
 ```javascript
-const esModuleMiddleware = require('es-modules-middleware');
+const esModuleMiddleware = require('@adobe/es-modules-middleware');
 const express = require('express');
 
 const app = express();
@@ -54,7 +54,7 @@ const path = require('path');
 module.exports = function(config) {
     config.set({
         basePath: './src',
-        plugins: ['karma-*', require('es-modules-middleware')],
+        plugins: ['karma-*', require('@adobe/es-modules-middleware')],
         frameworks: ['mocha', 'chai', 'sinon', 'web-components'],
         /* NOTE: must be added as beforeMiddleware! */
         beforeMiddleware: ['es-modules'],
