@@ -8,6 +8,7 @@
     "files": [
         "/lib"
     ],
+    "main": "lib/index.js",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
