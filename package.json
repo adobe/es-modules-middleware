@@ -8,6 +8,7 @@
     "files": [
         "/lib"
     ],
+    "license": "Apache-2.0",
     "scripts": {
         "lint": "eslint --ignore-path .gitignore **/*.js"
     },
