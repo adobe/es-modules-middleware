@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 const path = require('path');
 
 const express = require('express');
-const esModuleMiddleware = require('../index'); // You should use require('@adobe/es-modules-middleware');
+const esModuleMiddleware = require('../lib'); // You should use require('@adobe/es-modules-middleware');
 
 const app = express();
 const port = 3000;

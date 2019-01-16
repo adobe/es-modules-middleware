@@ -5,6 +5,9 @@
     "engines": {
         "node": ">=8.10.0"
     },
+    "files": [
+        "/lib"
+    ],
     "scripts": {
         "lint": "eslint --ignore-path .gitignore **/*.js"
     },

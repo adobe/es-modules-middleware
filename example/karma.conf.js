@@ -13,7 +13,7 @@ const path = require('path');
 
 module.exports = function(config) {
     config.set({
-        plugins: ['karma-*', require('../index')], // You should use require('es-modules-middleware')
+        plugins: ['karma-*', require('../lib')], // You should use require('es-modules-middleware')
         frameworks: ['mocha', 'chai', 'web-components'],
         beforeMiddleware: ['es-modules'],
         files: [
