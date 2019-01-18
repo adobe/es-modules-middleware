@@ -1,6 +1,6 @@
 {
     "name": "@adobe/es-modules-middleware",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "description": "A Connect-style and Karma middleware for resolving ES-module imports and exports to node_modules",
     "engines": {
         "node": ">=8.10.0"
@@ -9,6 +9,10 @@
         "/lib"
     ],
     "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adobe/es-modules-middleware"
+    },
     "scripts": {
         "lint": "eslint --ignore-path .gitignore **/*.js"
     },
