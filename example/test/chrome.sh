@@ -4,6 +4,22 @@
 
 set -e
 
+if [ -z "$CHROME_BIN"]; then
+    # no specified CHROME_BIN...try and guess
+    if [ -f "/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" ]; then
+        # WSL with remapped /mnt folder to /c
+        CHROME_BIN="/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+    elif [ -f "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" ]; then
+        # WSL default
+        CHROME_BIN="/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+    elif [ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]; then
+        # OSX default
+        CHROME_BIN="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    fi
+fi
+
+[ -z "$CHROME_BIN" ] && echo "Need to specify CHROME_BIN environment variable to point to your chrome binary" && exit 1
+
 TARGET_URL=$1
 CHROME_HOME=$PWD/.chrome
 
