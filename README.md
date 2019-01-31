@@ -30,7 +30,7 @@ npm install --save-dev @adobe/es-modules-middleware
 
 # Usage
 
-The module can be included and used as a connect middleware by providing it the root path where module resolution should start from.
+The module can be included and used as a connect middleware by providing it with a map of url base path to file system path from which to serve files. Any files served through the middleware will be processed to resolve import/export paths properly.
 
 ```javascript
 const esModuleMiddleware = require('@adobe/es-modules-middleware');
@@ -41,7 +41,13 @@ const port = 3000;
 
 const rootPath = path.resolve(__dirname);
 
-app.use(esModuleDevserver.middleware(rootPath));
+app.use(
+    esModuleMiddleware.middleware({
+        paths: {
+            '/node_modules': path.join(rootPath, 'node_modules'),
+        },
+    })
+);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
@@ -53,11 +59,17 @@ const path = require('path');
 
 module.exports = function(config) {
     config.set({
-        basePath: './src',
+        basePath: '.',
         plugins: ['karma-*', require('@adobe/es-modules-middleware')],
         frameworks: ['mocha', 'chai', 'sinon', 'web-components'],
-        /* NOTE: must be added as beforeMiddleware! */
-        beforeMiddleware: ['es-modules'],
+        middleware: ['es-modules'],
+        esModulesMiddleware: {
+            // NOTE: add any paths which you wish to be processed and served by the middleware
+            paths: {
+                '/': __dirname,
+                '/node_modules': path.join(__dirname, 'node_modules'),
+            },
+        },
         files: [
             {
                 pattern: '**/*.test.html',
@@ -72,6 +84,10 @@ module.exports = function(config) {
                 served: false,
             },
         ],
+        // NOTE: proxy node_modules paths to base so they get picked up by the middleware
+        proxies: {
+            '/node_modules/': '/base/node_modules/',
+        },
         reporters: ['mocha'],
     });
 };

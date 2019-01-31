@@ -15,11 +15,17 @@ module.exports = function(config) {
     config.set({
         plugins: ['karma-*', require('../lib')], // You should use require('es-modules-middleware')
         frameworks: ['mocha', 'chai', 'web-components'],
-        beforeMiddleware: ['es-modules'],
+        middleware: ['es-modules'],
+        esModulesMiddleware: {
+            paths: {
+                '/': __dirname,
+                '/node_modules': path.join(__dirname, 'node_modules'),
+            },
+        },
         files: [
             {
                 pattern: 'test/**/*.test.html',
-                watched: false,
+                watched: true,
                 included: false,
                 served: true,
             },
@@ -30,6 +36,10 @@ module.exports = function(config) {
                 served: false,
             },
         ],
+        // NOTE: proxy node_modules paths to base so they get picked up by the middleware
+        proxies: {
+            '/node_modules/': '/base/node_modules/',
+        },
         reporters: ['mocha'],
         browsers: [path.resolve(path.join(__dirname, 'test/chrome.sh'))],
     });
