@@ -20,6 +20,11 @@ const port = 3000;
 
 const rootPath = path.resolve(__dirname);
 
-app.use(esModuleMiddleware.middleware(rootPath));
+app.use(
+    esModuleMiddleware.middleware({
+        '/': rootPath,
+        '/node_modules': path.join(rootPath, 'node_modules'),
+    })
+);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
