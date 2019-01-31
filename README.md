@@ -43,7 +43,9 @@ const rootPath = path.resolve(__dirname);
 
 app.use(
     esModuleMiddleware.middleware({
-        '/node_modules': path.join(rootPath, 'node_modules'),
+        paths: {
+            '/node_modules': path.join(rootPath, 'node_modules'),
+        },
     })
 );
 
